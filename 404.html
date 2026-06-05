@@ -3,15 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>404 — Страница не найдена | TOLY SUMMER</title>
-  <meta name="description" content="Страница не найдена. Вернитесь на главную страницу фан-сайта TOLY SUMMER." />
+  <title>404 — TOLY SUMMER</title>
+  <meta name="description" content="Страница не найдена на фан-сайте TOLY SUMMER." />
+  <meta name="keywords" content="TOLY SUMMER 404, страница не найдена" />
+  <meta name="author" content="TOLY SUMMER fan site" />
   <meta name="robots" content="noindex, follow" />
-  <meta name="theme-color" content="#f4f1ea" />
+  <meta name="language" content="ru" />
+  <meta name="revisit-after" content="7 days" />
+  <link rel="canonical" href="https://tolysummer.ru/404.html" />
 
   <link rel="icon" href="assets/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+  <meta property="og:title" content="404 — TOLY SUMMER" />
+  <meta property="og:description" content="Страница не найдена на фан-сайте TOLY SUMMER." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tolysummer.ru/404.html" />
+  <meta property="og:image" content="https://tolysummer.ru/assets/obloc.png" />
+  <meta property="og:site_name" content="TOLY SUMMER" />
+  <meta property="og:locale" content="ru_RU" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="404 — TOLY SUMMER" />
+  <meta name="twitter:description" content="Страница не найдена на фан-сайте TOLY SUMMER." />
+  <meta name="twitter:image" content="https://tolysummer.ru/assets/obloc.png" />
+
+  <meta name="theme-color" content="#f4f1ea" />
 
   <style>
     :root {
@@ -378,6 +396,94 @@
       }
     }
 
+
+    @media (max-width: 760px) {
+      .nav {
+        gap: 12px;
+      }
+
+      .nav-links {
+        width: 100%;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 8px;
+        scrollbar-width: none;
+      }
+
+      .nav-links::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav-links a {
+        flex: 0 0 auto;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,.45);
+      }
+
+      .error-wrap {
+        padding: 38px 0;
+      }
+
+      .error-card {
+        border-radius: 26px;
+        padding: 30px 18px;
+      }
+
+      h1 {
+        font-size: clamp(80px, 28vw, 132px);
+        line-height: .88;
+      }
+
+      .lead {
+        font-size: 16px;
+      }
+    }
+
+
+    /* Better mobile navigation tabs for 404 */
+    @media (max-width: 760px) {
+      .topbar {
+        background: rgba(244,241,234,.94);
+        box-shadow: 0 10px 40px rgba(0,0,0,.055);
+      }
+
+      .nav-links {
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 8px;
+        padding: 7px;
+        border: 1px solid rgba(22,22,22,.12);
+        border-radius: 22px;
+        background: rgba(255,255,255,.54);
+        box-shadow: 0 12px 34px rgba(0,0,0,.08);
+        scrollbar-width: none;
+        scroll-snap-type: x mandatory;
+      }
+
+      .nav-links::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav-links a {
+        flex: 0 0 auto;
+        min-height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 15px;
+        border: 0;
+        border-radius: 16px;
+        background: transparent;
+        color: rgba(22,22,22,.70);
+        font-size: 12px;
+        font-weight: 900;
+        scroll-snap-align: center;
+      }
+    }
+
   </style>
 </head>
 
@@ -430,7 +536,7 @@
   <footer class="footer">
     <div class="container footer-grid">
       <span>© 2026 TOLY SUMMER.</span>
-      <span class="footer-site-sale">Сайт можно купить по контакту в Telegram: <a href="https://t.me/Buydomentolysummerru" target="_blank" rel="noopener">@Buydomentolysummerru</a></span>
+      <span class="footer-site-sale">Домен можно приобрести по контакту в Telegram: <a href="https://t.me/Buydomentolysummerru" target="_blank" rel="noopener">@Buydomentolysummerru</a></span>
       <span>Music • Live • Socials</span>
     </div>
   </footer>

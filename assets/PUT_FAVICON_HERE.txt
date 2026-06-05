@@ -1,0 +1,4 @@
+Положи сюда свои иконки сайта:
+- favicon.ico
+- favicon.png
+- apple-touch-icon.png
