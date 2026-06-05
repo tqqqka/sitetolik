@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>404 — Страница не найдена | TOLY SUMMER</title>
+  <meta name="description" content="Страница не найдена. Вернитесь на главную страницу фан-сайта TOLY SUMMER." />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#f4f1ea" />
+
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --ink: #161616;
+      --muted: #6c675f;
+      --line: rgba(22, 22, 22, .14);
+      --accent: #e84c2a;
+      --paper: #fffaf0;
+      --radius: 28px;
+      --max: 1180px;
+    }
+
+    @font-face {
+      font-family: "YSMusicHeadline";
+      src:
+        url("./fonts/YSMusic-HeadlineBold.ttf") format("truetype"),
+        url("fonts/YSMusic-HeadlineBold.ttf") format("truetype"),
+        url("./YSMusic-HeadlineBold.ttf") format("truetype"),
+        url("YSMusic-HeadlineBold.ttf") format("truetype");
+      font-weight: 400 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 18% 8%, rgba(232, 76, 42, .17), transparent 28%),
+        radial-gradient(circle at 90% 5%, rgba(255, 200, 87, .28), transparent 22%),
+        linear-gradient(90deg, rgba(0,0,0,.03) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(0,0,0,.03) 1px, transparent 1px),
+        var(--bg);
+      background-size: auto, auto, 54px 54px, 54px 54px;
+      color: var(--ink);
+      font-family: "YSMusicHeadline", Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .fan-notice {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      width: 100%;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,.16);
+      background: #111111;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    .fan-notice-track {
+      display: inline-flex;
+      align-items: center;
+      gap: 42px;
+      min-width: max-content;
+      padding: 10px 0;
+      animation: fanNoticeMarquee 22s linear infinite;
+    }
+
+    .fan-notice-track span {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    @keyframes fanNoticeMarquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-33.333%); }
+    }
+
+    .topbar {
+      border-bottom: 1px solid var(--line);
+      background: rgba(244, 241, 234, .88);
+      backdrop-filter: blur(18px);
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
+
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -.02em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: block;
+      overflow: hidden;
+      background-color: var(--ink);
+      background-image: url("assets/obloc.png");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,.18);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      padding: 10px 13px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 14px;
+      transition: .22s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+      background: rgba(22,22,22,.08);
+      transform: translateY(-2px);
+    }
+
+    .error-wrap {
+      min-height: calc(100vh - 170px);
+      display: grid;
+      place-items: center;
+      padding: 70px 0;
+    }
+
+    .error-card {
+      width: min(100%, 980px);
+      padding: clamp(28px, 6vw, 64px);
+      border: 1px solid var(--line);
+      border-radius: 40px;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(232, 76, 42, .20), transparent 30%),
+        radial-gradient(circle at 86% 10%, rgba(255, 200, 87, .35), transparent 28%),
+        rgba(255,255,255,.52);
+      box-shadow: 0 24px 80px rgba(0,0,0,.12);
+      text-align: center;
+      animation: cardIn .75s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-weight: 900;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      margin: 0 0 22px;
+      font-size: clamp(86px, 18vw, 220px);
+      line-height: .82;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+    }
+
+    .lead {
+      width: min(100%, 680px);
+      margin: 0 auto;
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.5;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 20px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-weight: 900;
+      transition: .24s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .btn.primary {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .btn.light {
+      background: rgba(255,255,255,.5);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      border-color: var(--accent);
+    }
+
+    .footer {
+      padding: 34px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-grid span:first-child {
+      justify-self: start;
+    }
+
+    .footer-grid span:last-child {
+      justify-self: end;
+    }
+
+    .footer-site-sale {
+      justify-self: center;
+      text-align: center;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .footer-site-sale a {
+      color: var(--accent);
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(.985);
+        filter: blur(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-grid span:first-child,
+      .footer-grid span:last-child,
+      .footer-site-sale {
+        justify-self: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* 404 centering hard fix */
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .error-wrap {
+      flex: 1;
+      width: 100%;
+      min-height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(42px, 8vh, 90px) 0;
+    }
+
+    .error-wrap .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .error-card {
+      margin: 0 auto;
+      max-width: 980px;
+    }
+
+    .footer {
+      margin-top: auto;
+    }
+
+    @media (max-width: 760px) {
+      .error-wrap {
+        align-items: center;
+        padding: 42px 0;
+      }
+
+      .error-card {
+        width: 100%;
+      }
+    }
+
+  </style>
+</head>
+
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+  <div class="fan-notice" role="note" aria-label="Предупреждение">
+    <div class="fan-notice-track">
+      <span>Сайт создан фанатами и не является настоящим официальным сайтом. Все покупки не осуществляются и не являются реальными.</span>
+      <span>Сайт создан фанатами и не является настоящим официальным сайтом. Все покупки не осуществляются и не являются реальными.</span>
+      <span>Сайт создан фанатами и не является настоящим официальным сайтом. Все покупки не осуществляются и не являются реальными.</span>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="TOLY SUMMER">
+        <span class="brand-mark"></span>
+        <span>TOLY SUMMER</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Главное меню">
+        <a href="index.html">Главная</a>
+        <a href="about.html">Об артисте</a>
+        <a href="music.html">Музыка</a>
+        <a href="video.html">Видео</a>
+        <a href="merch.html">Мерч</a>
+        <a href="tours.html">Туры</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="error-wrap">
+    <div class="container">
+      <div class="error-card">
+        <span class="kicker">Page not found</span>
+        <h1>404</h1>
+        <p class="lead">
+          Такой страницы нет или ссылка была изменена. Вернись на главную страницу фан-сайта TOLY SUMMER.
+        </p>
+
+        <div class="actions">
+          <a class="btn primary" href="index.html">На главную</a>
+          <a class="btn light" href="music.html">Музыка</a>
+          <a class="btn light" href="tours.html">Туры</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <span>© 2026 TOLY SUMMER.</span>
+      <span class="footer-site-sale">Сайт можно купить по контакту в Telegram: <a href="https://t.me/Buydomentolysummerru" target="_blank" rel="noopener">@Buydomentolysummerru</a></span>
+      <span>Music • Live • Socials</span>
+    </div>
+  </footer>
+
+  <script>
+    // Basic anti-copy protection
+    (function () {
+      const allowInsideInput = (event) => {
+        const target = event.target;
+        return target && (
+          target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable
+        );
+      };
+
+      document.addEventListener("contextmenu", (event) => event.preventDefault());
+      document.addEventListener("copy", (event) => {
+        if (!allowInsideInput(event)) event.preventDefault();
+      });
+      document.addEventListener("cut", (event) => {
+        if (!allowInsideInput(event)) event.preventDefault();
+      });
+      document.addEventListener("selectstart", (event) => {
+        if (!allowInsideInput(event)) event.preventDefault();
+      });
+      document.addEventListener("dragstart", (event) => event.preventDefault());
+
+      document.addEventListener("keydown", (event) => {
+        if (allowInsideInput(event)) return;
+
+        const key = event.key.toLowerCase();
+        const blockedCtrlKeys = ["c", "x", "s", "u", "p", "a"];
+
+        if ((event.ctrlKey || event.metaKey) && blockedCtrlKeys.includes(key)) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        if (
+          key === "f12" ||
+          ((event.ctrlKey || event.metaKey) && event.shiftKey && ["i", "j", "c"].includes(key))
+        ) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
