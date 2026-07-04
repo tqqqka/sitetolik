@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Страница не найдена</title>
+  <meta name="robots" content="noindex, nofollow" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0a0a;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .code {
+    font-size: clamp(64px, 14vw, 140px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .code span {
+    color: #fff;
+  }
+
+  .message {
+    font-size: 16px;
+    color: #888;
+    text-align: center;
+    max-width: 320px;
+    line-height: 1.6;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 16px 40px;
+    background: #4af;
+    color: #000;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 100px;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+
+  .btn:hover {
+    background: #6cf;
+    transform: scale(1.04);
+  }
+
+  .btn:active {
+    transform: scale(0.97);
+  }
+</style>
+</head>
+<body>
+
+  <p class="code">4<span>0</span>4</p>
+
+  <p class="message">Такой страницы не существует. Возможно, она была удалена или адрес введён неверно.</p>
+
+  <a class="btn" href="https://tolysummer.ru" target="_blank">На главную →</a>
+
+</body>
+</html>
