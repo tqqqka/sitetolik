@@ -1,749 +1,251 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TOLY SUMMER — УСЛУГИ</title>
-<style>
-:root{
-  --red:#e10600;
-  --red-deep:#8b0000;
-  --black:#0a0a0a;
-  --ink:#000;
-  --paper:#f2f0ec;
-  --grey:#151515;
-  --tick:33px;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;overflow-x:hidden;-webkit-text-size-adjust:100%}
-body{
-  background:var(--black);
-  color:var(--paper);
-  font-family:"Arial Black","Arial Bold",Arial,sans-serif;
-  overflow-x:hidden;
-  cursor:crosshair;
-  -webkit-tap-highlight-color:rgba(225,6,0,.35);
-}
-img{max-width:100%}
-.mono{font-family:"Consolas","Courier New",monospace;font-weight:700}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>Фото</title>
+  <style>
+    * { box-sizing: border-box; }
 
-/* ---------- ШУМ / СКАНЛАЙНЫ ---------- */
-.grain,.scan{position:fixed;inset:0;pointer-events:none;z-index:900}
-.grain{
-  opacity:.055;mix-blend-mode:screen;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
-  animation:grainmove .6s steps(2) infinite;
-}
-@keyframes grainmove{0%{transform:translate(0,0)}50%{transform:translate(-3%,2%)}100%{transform:translate(2%,-3%)}}
-.scan{
-  background:repeating-linear-gradient(to bottom,rgba(0,0,0,.35) 0 1px,transparent 1px 4px);
-  opacity:.4;
-}
-::selection{background:var(--red);color:#fff}
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #000;
+    }
 
-/* ---------- ТИКЕР ---------- */
-.ticker{
-  position:fixed;top:0;left:0;right:0;z-index:800;
-  background:var(--red);color:#000;
-  border-bottom:4px solid #000;
-  overflow:hidden;white-space:nowrap;
-}
-.ticker__track{display:inline-block;padding:7px 0;line-height:15px;animation:slide 24s linear infinite}
-.ticker span{font-size:13px;letter-spacing:.22em;padding:0 22px}
-@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    body {
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-/* ---------- НАВ ---------- */
-nav{
-  position:sticky;top:var(--tick);z-index:700;
-  display:flex;justify-content:space-between;align-items:stretch;
-  border-bottom:4px solid var(--red);
-  background:rgba(10,10,10,.92);
-  backdrop-filter:blur(4px);
-}
-.logo{
-  padding:16px 26px;font-size:20px;letter-spacing:-.03em;
-  border-right:4px solid var(--red);
-}
-.logo b{color:var(--red)}
-.nav__links{display:flex}
-.nav__links a{
-  display:flex;align-items:center;padding:0 22px;
-  color:var(--paper);text-decoration:none;font-size:12px;letter-spacing:.2em;
-  border-left:2px solid #222;transition:.15s;
-}
-.nav__links a:hover{background:var(--red);color:#000}
+    .screen {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100svh;
+      overflow: hidden;
+      background: #000;
+    }
 
-/* ---------- ХИРО ---------- */
-header{
-  position:relative;padding:var(--tick) 0 0;
-  border-bottom:8px solid var(--red);
-  background:
-    radial-gradient(120% 90% at 50% 100%, rgba(225,6,0,.32), transparent 60%),
-    repeating-linear-gradient(-45deg,#0d0d0d 0 22px,#0a0a0a 22px 44px);
-}
-.hero{
-  max-width:1400px;margin:0 auto;padding:40px 26px 0;
-  display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:end;
-}
-.hero__kicker{
-  display:inline-block;background:var(--red);color:#000;
-  padding:6px 14px;font-size:12px;letter-spacing:.25em;margin-bottom:22px;
-  transform:rotate(-1.5deg);
-}
-h1{
-  font-size:clamp(52px,10.5vw,168px);line-height:.82;letter-spacing:-.045em;
-  text-transform:uppercase;
-}
-h1 .out{
-  color:transparent;-webkit-text-stroke:2px var(--red);
-  display:block;
-}
-h1 .glitch{position:relative;display:block;color:var(--paper)}
-h1 .glitch::before,h1 .glitch::after{
-  content:attr(data-t);position:absolute;left:0;top:0;width:100%;
-}
-h1 .glitch::before{color:var(--red);animation:gl1 3.4s infinite steps(1)}
-h1 .glitch::after{color:#00e0ff;animation:gl2 4.1s infinite steps(1);mix-blend-mode:screen}
-@keyframes gl1{0%,92%{transform:none;opacity:0}93%{transform:translate(-6px,2px);opacity:.9}96%{transform:translate(5px,-3px);opacity:.9}100%{opacity:0}}
-@keyframes gl2{0%,94%{transform:none;opacity:0}95%{transform:translate(7px,-2px);opacity:.55}98%{transform:translate(-4px,3px);opacity:.55}100%{opacity:0}}
-.hero__sub{
-  margin-top:26px;max-width:520px;font-size:14px;line-height:1.7;
-  font-family:"Consolas","Courier New",monospace;color:#b9b5ae;
-  border-left:4px solid var(--red);padding-left:16px;
-}
-.hero__cta{margin:30px 0 46px;display:flex;gap:14px;flex-wrap:wrap}
-.btn{
-  border:0;font-family:inherit;font-size:14px;letter-spacing:.14em;
-  padding:18px 30px;cursor:pointer;text-decoration:none;display:inline-block;
-  text-transform:uppercase;transition:.12s;
-}
-.btn--red{background:var(--red);color:#000;box-shadow:8px 8px 0 #000,8px 8px 0 2px var(--red)}
-.btn--red:hover{transform:translate(4px,4px);box-shadow:2px 2px 0 #000,2px 2px 0 2px var(--red)}
-.btn--ghost{background:transparent;color:var(--paper);border:3px solid var(--paper)}
-.btn--ghost:hover{background:var(--paper);color:#000}
+    .photo-card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      width: min(32vw, 320px);
+      opacity: 0;
+      will-change: transform;
+    }
 
-.hero__man{position:relative;justify-self:center;filter:drop-shadow(0 0 60px rgba(225,6,0,.55))}
-.hero__man img{display:block;max-height:78vh;width:auto;max-width:100%}
-.hero__man::after{
-  content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);
-  width:120%;height:26px;background:var(--red);filter:blur(26px);opacity:.7;
-}
-.badge{
-  position:absolute;background:#000;border:3px solid var(--red);color:var(--red);
-  font-size:11px;letter-spacing:.18em;padding:9px 12px;
-}
-.badge--1{top:8%;left:-6%;transform:rotate(-8deg)}
-.badge--2{top:44%;right:-10%;transform:rotate(6deg);color:var(--paper);border-color:var(--paper)}
-.badge--3{bottom:14%;left:-10%;transform:rotate(4deg)}
+    .photo-card.ready { opacity: 1; }
 
-/* ---------- БЕГУЩАЯ ПОЛОСА ---------- */
-.marquee{
-  background:var(--red);color:#000;border-top:4px solid #000;border-bottom:4px solid #000;
-  overflow:hidden;white-space:nowrap;
-}
-.marquee__track{display:inline-block;animation:slide 18s linear infinite;padding:12px 0}
-.marquee__track span{font-size:clamp(22px,4vw,44px);letter-spacing:-.02em;padding:0 26px;text-transform:uppercase}
-.marquee__track i{font-style:normal;color:var(--paper)}
+    .photo-card img {
+      display: block;
+      width: 100%;
+      max-height: 46svh;
+      object-fit: contain;
+      object-position: center;
+    }
 
-/* ---------- СЕКЦИИ ---------- */
-section{max-width:1400px;margin:0 auto;padding:90px 26px}
-.sec__head{display:flex;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:44px}
-.sec__num{color:var(--red);font-size:14px;letter-spacing:.3em;font-family:"Consolas",monospace}
-h2{font-size:clamp(34px,6vw,86px);line-height:.88;letter-spacing:-.04em;text-transform:uppercase}
-h2 em{font-style:normal;color:var(--red)}
-.rule{flex:1;height:4px;background:var(--red);min-width:60px;margin-bottom:12px}
+    .nickname {
+      color: #fff;
+      font-size: clamp(13px, 1.4vw, 16px);
+      line-height: 1.2;
+      text-decoration: none;
+    }
 
-/* ---------- СТАТЫ ---------- */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);border:4px solid var(--red)}
-.stat{padding:34px 22px;border-right:4px solid var(--red);position:relative;overflow:hidden}
-.stat:last-child{border-right:0}
-.stat b{display:block;font-size:clamp(38px,5vw,68px);line-height:1;color:var(--paper)}
-.stat span{display:block;margin-top:10px;font-size:11px;letter-spacing:.2em;color:#8d8880;font-family:"Consolas",monospace}
-.stat:hover{background:var(--red)}
-.stat:hover b,.stat:hover span{color:#000}
+    .advertising-footer {
+      position: absolute;
+      right: 12px;
+      bottom: max(12px, env(safe-area-inset-bottom));
+      left: 12px;
+      color: #9a9a9a;
+      font-size: clamp(11px, 1.15vw, 13px);
+      line-height: 1.35;
+      text-align: center;
+    }
 
-/* ---------- КАРТОЧКА УСЛУГИ ---------- */
-.offer{border:4px solid var(--paper);background:#0d0d0d}
-.offer__top{
-  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
-  background:var(--red);color:#000;padding:14px 22px;font-size:12px;letter-spacing:.2em;
-}
-.offer__body{display:grid;grid-template-columns:1.25fr .75fr}
-.gal{padding:4px;height:100%}
-.gal figure{position:relative;overflow:hidden;background:#000;cursor:pointer;height:100%;min-height:420px}
-.gal img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(.3) contrast(1.12) brightness(.85);transition:.5s}
-.gal figure:hover img{filter:none;transform:scale(1.04)}
-.gal figure::before{
-  content:"";position:absolute;inset:0;border:2px solid transparent;z-index:2;transition:.2s;
-}
-.gal figure:hover::before{border-color:var(--red)}
-.offer__info{border-left:4px solid var(--paper);padding:26px;display:flex;flex-direction:column}
-.offer__info h3{font-size:clamp(26px,3.4vw,44px);line-height:.92;text-transform:uppercase;letter-spacing:-.03em}
-.offer__info h3 em{font-style:normal;color:var(--red);display:block}
-.specs{margin:24px 0;font-family:"Consolas",monospace;font-size:12px}
-.specs div{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed #333;color:#a8a39c}
-.specs div b{color:var(--paper);text-align:right}
-.price{margin-top:auto;padding-top:18px;border-top:4px solid var(--red)}
-.price s{color:#6b6660;font-size:16px;font-family:"Consolas",monospace}
-.price b{display:block;font-size:clamp(38px,5vw,62px);line-height:1;color:var(--paper)}
-.price small{display:block;color:#8d8880;font-family:"Consolas",monospace;font-size:11px;letter-spacing:.14em;margin-top:8px}
-.buy{width:100%;margin-top:20px;background:var(--red);color:#000;border:0;padding:22px;font-family:inherit;
-  font-size:18px;letter-spacing:.16em;cursor:pointer;text-transform:uppercase;position:relative;overflow:hidden}
-.buy:hover{background:var(--paper)}
-.buy:active{transform:translateY(3px)}
+    .advertising-footer a {
+      color: #fff;
+      text-decoration: none;
+    }
 
-/* ---------- ТАРИФЫ ---------- */
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:4px solid var(--red)}
-.plan{padding:34px 26px;border-right:4px solid var(--red);display:flex;flex-direction:column}
-.plan:last-child{border-right:0}
-.plan--hot{background:var(--red);color:#000}
-.plan h4{font-size:26px;text-transform:uppercase;letter-spacing:-.02em}
-.plan .p{font-size:44px;margin:16px 0;line-height:1}
-.plan ul{list-style:none;font-family:"Consolas",monospace;font-size:12px;line-height:2.1;color:#a8a39c;margin-bottom:24px}
-.plan--hot ul{color:#1a0000}
-.plan li::before{content:"▪ ";color:var(--red)}
-.plan--hot li::before{color:#000}
-.plan .btn{margin-top:auto;text-align:center}
-.plan--hot .btn--red{background:#000;color:var(--red);box-shadow:8px 8px 0 #000}
+    .nickname:hover,
+    .nickname:focus-visible,
+    .advertising-footer a:hover,
+    .advertising-footer a:focus-visible {
+      color: #8fc7ff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
 
-/* ---------- ОТЗЫВЫ ---------- */
-.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.rev{border:3px solid #2a2a2a;padding:24px;background:#0d0d0d;transition:.2s}
-.rev:hover{border-color:var(--red);transform:translate(-4px,-4px);box-shadow:8px 8px 0 var(--red-deep)}
-.rev p{font-family:"Consolas",monospace;font-size:13px;line-height:1.8;color:#c9c4bd}
-.rev footer{margin-top:18px;font-size:11px;letter-spacing:.18em;color:var(--red)}
-.stars{color:var(--red);letter-spacing:.2em;margin-bottom:12px}
-
-/* ---------- FAQ ---------- */
-.faq{border-top:4px solid var(--red)}
-.q{border-bottom:4px solid var(--red);cursor:pointer}
-.q__t{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:26px 4px;
-  font-size:clamp(16px,2.4vw,30px);text-transform:uppercase;letter-spacing:-.02em}
-.q:hover .q__t{color:var(--red)}
-.q__t i{font-style:normal;color:var(--red);font-size:28px;transition:.2s}
-.q.open .q__t i{transform:rotate(45deg)}
-.q__a{max-height:0;overflow:hidden;transition:max-height .3s ease}
-.q.open .q__a{max-height:300px}
-.q__a p{padding:0 4px 26px;font-family:"Consolas",monospace;font-size:13px;line-height:1.9;color:#a8a39c;max-width:760px}
-
-/* ---------- ФУТЕР ---------- */
-footer.big{border-top:8px solid var(--red);background:#060606;padding:60px 26px 30px}
-.foot{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
-.foot__big{font-size:clamp(40px,9vw,140px);line-height:.85;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px var(--red)}
-.foot__col{font-family:"Consolas",monospace;font-size:12px;line-height:2.2;color:#7d7871}
-.foot__col b{color:var(--paper);display:block;margin-bottom:6px;letter-spacing:.18em;font-size:11px}
-.copy{max-width:1400px;margin:44px auto 0;border-top:2px solid #1c1c1c;padding-top:18px;
-  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
-  font-family:"Consolas",monospace;font-size:11px;color:#4d4a46;letter-spacing:.1em}
-
-/* ---------- МОДАЛКА ---------- */
-.modal{position:fixed;inset:0;z-index:1000;display:none;justify-content:center;padding:20px;overflow-y:auto;overscroll-behavior:contain}
-.modal.on{display:flex;animation:pop .18s ease}
-.modal__bg{position:fixed;inset:0;background:rgba(0,0,0,.86)}
-.modal__box{
-  position:relative;margin:auto;background:var(--red);color:#000;border:6px solid #000;
-  padding:52px 44px;max-width:620px;width:100%;text-align:center;
-  box-shadow:0 0 0 6px var(--red),20px 20px 0 rgba(0,0,0,.6);
-}
-.modal__box h3{font-size:clamp(38px,9vw,86px);line-height:.85;letter-spacing:-.05em;text-transform:uppercase}
-.modal__box p{font-family:"Consolas",monospace;font-size:13px;line-height:1.8;margin:20px 0 28px}
-.modal__box .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.modal__box button{
-  border:4px solid #000;background:#000;color:var(--red);padding:15px 26px;
-  font-family:inherit;font-size:13px;letter-spacing:.16em;cursor:pointer;text-transform:uppercase}
-.modal__box button.alt{background:transparent;color:#000}
-.modal__box button:hover{background:var(--paper);color:#000;border-color:#000}
-@keyframes pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
-.shake{animation:shake .35s}
-@keyframes shake{10%,90%{transform:translateX(-3px)}20%,80%{transform:translateX(5px)}30%,50%,70%{transform:translateX(-8px)}40%,60%{transform:translateX(8px)}}
-
-/* ---------- ЛАЙТБОКС ---------- */
-.lb{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.94);padding:30px}
-.lb.on{display:flex}
-.lb img{max-width:92vw;max-height:82vh;border:5px solid var(--red)}
-.lb__cap{position:absolute;bottom:24px;left:0;right:0;text-align:center;font-family:"Consolas",monospace;font-size:12px;letter-spacing:.2em;color:var(--red)}
-.lb__x{position:absolute;top:20px;right:26px;font-size:34px;color:var(--red);cursor:pointer}
-
-/* ---------- АДАПТИВ ---------- */
-@media(max-width:1000px){
-  .hero{grid-template-columns:1fr;padding-top:30px}
-  .hero__man{margin-top:20px}
-  .hero__man img{max-height:62vh}
-  .badge--1{left:0}.badge--3{left:0}.badge--2{right:0}
-  .offer__body{grid-template-columns:1fr}
-  .offer__info{border-left:0;border-top:4px solid var(--paper)}
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .stat:nth-child(2){border-right:0}
-  .stat:nth-child(1),.stat:nth-child(2){border-bottom:4px solid var(--red)}
-  .plans{grid-template-columns:1fr}
-  .plan{border-right:0;border-bottom:4px solid var(--red)}
-  .plan:last-child{border-bottom:0}
-  .revs{grid-template-columns:1fr}
-  .nav__links a{padding:0 12px;font-size:10px}
-  .logo{padding:14px 16px;font-size:17px}
-  section{padding:60px 18px}
-  .foot{gap:22px}
-}
-
-/* ---------- ТЕЛЕФОН ---------- */
-@media(max-width:680px){
-  /* шапка: логотип сверху, ссылки строкой под ним */
-  nav{flex-direction:column}
-  .logo{border-right:0;border-bottom:2px solid var(--red);padding:12px 16px;font-size:16px;letter-spacing:.02em}
-  .nav__links{width:100%}
-  .nav__links a{
-    flex:1;justify-content:center;padding:11px 4px;font-size:9px;letter-spacing:.1em;
-    border-left:1px solid #262626;
-  }
-  .nav__links a:first-child{border-left:0}
-  .ticker span{font-size:11px;letter-spacing:.16em;padding:0 16px}
-
-  /* хиро */
-  .hero{padding:26px 16px 0;gap:6px}
-  .hero__kicker{font-size:9px;letter-spacing:.16em;padding:6px 10px;margin-bottom:16px}
-  h1{font-size:clamp(42px,13.5vw,86px)}
-  h1 .out{-webkit-text-stroke-width:1.5px}
-  .hero__sub{margin-top:20px;font-size:12px;padding-left:12px;border-left-width:3px}
-  .hero__cta{margin:24px 0 10px;gap:10px}
-  .hero__man{margin-top:0}
-  .hero__cta .btn{flex:1 1 100%;text-align:center;padding:17px 14px;font-size:12px}
-  .btn--red{box-shadow:5px 5px 0 #000,5px 5px 0 2px var(--red)}
-  .hero__man img{max-height:56vh}
-  .badge{font-size:8px;padding:6px 8px;letter-spacing:.1em;border-width:2px}
-  .badge--1{left:2%}.badge--2{right:-2%}.badge--3{left:-2%;bottom:18%}
-
-  /* секции */
-  section{padding:52px 14px}
-  .sec__head{gap:8px;margin-bottom:26px;align-items:center}
-  .sec__num{font-size:10px;letter-spacing:.2em;flex:0 0 auto}
-  h2{font-size:clamp(28px,8.4vw,50px);flex:1 1 100%}
-  .rule{height:3px;margin-bottom:0;flex:1 1 100%;min-width:100%}
-
-  /* статы */
-  .stats{border-width:3px}
-  .stat{padding:22px 14px;border-right-width:3px}
-  .stat:nth-child(1),.stat:nth-child(2){border-bottom-width:3px}
-  .stat b{font-size:36px}
-  .stat span{font-size:9px;letter-spacing:.12em;margin-top:6px}
-
-  /* карточка услуги */
-  .offer{border-width:3px}
-  .offer__top{padding:11px 14px;font-size:9px;letter-spacing:.12em;gap:8px}
-  .gal figure{min-height:240px}
-  .offer__info{padding:20px 16px;border-top-width:3px}
-  .offer__info h3{font-size:30px}
-  .specs{margin:18px 0;font-size:11px}
-  .specs div{padding:8px 0}
-  .price b{font-size:40px}
-  .price small{font-size:10px}
-  .buy{padding:19px 12px;font-size:15px;letter-spacing:.1em}
-
-  /* тарифы */
-  .plans{border-width:3px}
-  .plan{padding:26px 18px;border-bottom-width:3px}
-  .plan h4{font-size:22px}
-  .plan .p{font-size:36px;margin:12px 0}
-  .plan ul{font-size:11px;line-height:1.95;margin-bottom:20px}
-  .plan .btn{padding:16px 12px;font-size:12px}
-  .plan--hot .btn--red{box-shadow:5px 5px 0 #000}
-
-  /* отзывы / faq */
-  .revs{gap:14px}
-  .rev{padding:18px 16px}
-  .rev p{font-size:12px}
-  .q__t{padding:20px 2px;font-size:16px;letter-spacing:0}
-  .q__t i{font-size:22px}
-  .q__a p{font-size:12px;padding-bottom:20px}
-
-  /* футер */
-  footer.big{padding:44px 14px 24px}
-  .foot{flex-direction:column;gap:26px}
-  .foot__big{-webkit-text-stroke-width:1.5px;font-size:clamp(46px,15vw,90px)}
-  .foot__col{font-size:11px;line-height:2}
-  .copy{flex-direction:column;gap:6px;font-size:10px;margin-top:30px}
-
-  /* модалка */
-  .modal{padding:14px}
-  .modal__box{padding:32px 18px;border-width:4px;box-shadow:0 0 0 4px var(--red),10px 10px 0 rgba(0,0,0,.6)}
-  .modal__box h3{font-size:clamp(30px,10vw,52px)}
-  .modal__box p{font-size:12px;margin:16px 0 22px}
-  .modal__box .row{flex-direction:column}
-  .modal__box button{width:100%;padding:16px 12px;font-size:12px}
-
-  /* лайтбокс */
-  .lb{padding:16px}
-  .lb img{max-height:72vh;border-width:3px}
-  .lb__x{top:12px;right:14px;font-size:30px;padding:6px 10px}
-}
-
-/* ---------- ТАЧ: без залипающих ховеров ---------- */
-@media(hover:none){
-  body{cursor:auto}
-  .gal figure:hover img{filter:grayscale(.3) contrast(1.12) brightness(.85);transform:none}
-  .gal figure:hover::before{border-color:transparent}
-  .btn--red:hover{transform:none}
-  .btn--ghost:hover{background:transparent;color:var(--paper)}
-  .plan--hot .btn--ghost:hover{color:#000}
-  .nav__links a:hover{background:transparent;color:var(--paper)}
-  .stat:hover{background:transparent}
-  .stat:hover b{color:var(--paper)}
-  .stat:hover span{color:#8d8880}
-  .rev:hover{border-color:#2a2a2a;transform:none;box-shadow:none}
-  .buy:hover{background:var(--red)}
-  .q:hover .q__t{color:inherit}
-  .modal__box button:hover{background:#000;color:var(--red)}
-  .modal__box button.alt:hover{background:transparent;color:#000}
-  .btn:active,.buy:active,.modal__box button:active{opacity:.75}
-}
-</style>
+    @media (max-width: 640px) {
+      .photo-card { width: min(43vw, 210px); }
+      .photo-card img { max-height: 40svh; }
+    }
+  </style>
 </head>
 <body>
+  <main class="screen">
+    <!-- Поддерживаются foto1/foto2 в форматах JPG, JPEG и PNG. -->
+    <article class="photo-card" data-position-key="foto1">
+      <img src="foto1.jpg" data-fallbacks="foto1.jpeg|foto1.png|foto1.JPG|foto1.JPEG|foto1.PNG" alt="Фото от @fyave">
+      <a class="nickname" href="https://t.me/fyave" target="_blank" rel="noopener noreferrer">@fyave</a>
+    </article>
 
-<div class="grain"></div>
-<div class="scan"></div>
+    <article class="photo-card" data-position-key="foto2">
+      <img src="foto2.jpg" data-fallbacks="foto2.jpeg|foto2.png|foto2.JPG|foto2.JPEG|foto2.PNG" alt="Фото от анонимного автора">
+      <span class="nickname">Аноним</span>
+    </article>
 
-<!-- ТИКЕР -->
-<div class="ticker"><div class="ticker__track" id="tick"></div></div>
+    <footer class="advertising-footer" id="advertising-footer">
+      Поставить сюда своё фото, видео или рекламу:
+      <a href="https://t.me/tq2ka" target="_blank" rel="noopener noreferrer">@tq2ka</a>
+    </footer>
+  </main>
 
-<!-- НАВ -->
-<nav>
-  <div class="logo">TOLY <b>SUMMER</b>®</div>
-  <div class="nav__links">
-    <a href="#uslugi">УСЛУГА</a>
-    <a href="#tarify">ТАРИФЫ</a>
-    <a href="#otzyvy">ОТЗЫВЫ</a>
-    <a href="#faq">FAQ</a>
-  </div>
-</nav>
+  <script>
+    const STORAGE_KEY = 'photo-card-positions-v1';
+    const CARD_GAP = 18;
+    const cards = Array.from(document.querySelectorAll('.photo-card'));
+    const footer = document.getElementById('advertising-footer');
+    const images = cards.map((card) => card.querySelector('img'));
+    let resizeTimer;
 
-<!-- ХИРО -->
-<header>
-  <div class="hero">
-    <div>
-      <div class="hero__kicker">С 2011 ГОДА · БЕЗ ЛИЦЕНЗИИ · БЕЗ ЖАЛОСТИ</div>
-      <h1>
-        <span class="out">УСЛУГИ</span>
-        <span class="glitch" data-t="TOLY">TOLY</span>
-        <span class="glitch" data-t="SUMMER">SUMMER</span>
-      </h1>
-      <p class="hero__sub">
-        &gt; 90 авторских песен. 1 (одна) услуга.<br>
-        &gt; Ноль возвратов, ноль вопросов, ноль совести.<br>
-        &gt; Мы не продаём мечту. Мы продаём координаты.
-      </p>
-      <div class="hero__cta">
-        <a href="#uslugi" class="btn btn--red">СМОТРЕТЬ УСЛУГУ</a>
-        <a href="#faq" class="btn btn--ghost">А ЭТО ЛЕГАЛЬНО?</a>
-      </div>
-    </div>
-    <div class="hero__man">
-      <span class="badge badge--1">★ 90 ПЕСЕН</span>
-      <span class="badge badge--2">ЛИЧНО ВСТРЕЧАЕТ</span>
-      <span class="badge badge--3">14 Y.O. CEO</span>
-      <img src="img/toly.png" alt="Toly Summer">
-    </div>
-  </div>
-</header>
+    function readPositions() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      } catch {
+        return {};
+      }
+    }
 
-<!-- БЕГУЩАЯ -->
-<div class="marquee"><div class="marquee__track" id="marq"></div></div>
+    function savePositions(positions) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(positions));
+      } catch {
+        // Если хранилище браузера отключено, страница всё равно продолжит работать.
+      }
+    }
 
-<!-- СТАТЫ -->
-<section id="stats" style="padding-top:70px;padding-bottom:0">
-  <div class="stats">
-    <div class="stat"><b data-c="90">0</b><span>АВТОРСКИХ ПЕСЕН</span></div>
-    <div class="stat"><b data-c="1">0</b><span>УСЛУГА В КАТАЛОГЕ</span></div>
-    <div class="stat"><b data-c="0">0</b><span>ВОЗВРАТОВ ЗА ВСЁ ВРЕМЯ</span></div>
-    <div class="stat"><b data-c="240">0</b><span>КМ ДО ОБЪЕКТА</span></div>
-  </div>
-</section>
+    function rectanglesOverlap(first, second) {
+      return (
+        first.left < second.right + CARD_GAP &&
+        first.right + CARD_GAP > second.left &&
+        first.top < second.bottom + CARD_GAP &&
+        first.bottom + CARD_GAP > second.top
+      );
+    }
 
-<!-- УСЛУГА -->
-<section id="uslugi">
-  <div class="sec__head">
-    <span class="sec__num">[ 01 ]</span>
-    <h2>КАТАЛОГ <em>УСЛУГ</em></h2>
-    <div class="rule"></div>
-    <span class="sec__num">ПОЗИЦИЙ: 1</span>
-  </div>
+    function positionedRect(card, position, edge, footerTop) {
+      const box = card.getBoundingClientRect();
+      const maxX = Math.max(edge, window.innerWidth - box.width - edge);
+      const maxY = Math.max(edge, footerTop - box.height - edge);
+      const x = edge + Math.min(1, Math.max(0, position.x)) * Math.max(0, maxX - edge);
+      const y = edge + Math.min(1, Math.max(0, position.y)) * Math.max(0, maxY - edge);
+      return { left: x, top: y, right: x + box.width, bottom: y + box.height, x, y };
+    }
 
-  <article class="offer">
-    <div class="offer__top">
-      <span>● В НАЛИЧИИ · ОСТАЛОСЬ 2 МЕСТА</span>
-      <span id="clock">ДО КОНЦА АКЦИИ: --:--:--</span>
-    </div>
+    function positionsAreUsable(positions, edge, footerTop) {
+      const saved = cards.every((card) => {
+        const position = positions[card.dataset.positionKey];
+        return Number.isFinite(position?.x) && Number.isFinite(position?.y);
+      });
 
-    <div class="offer__body">
-      <div class="gal">
-        <figure>
-          <img src="img/place-2.png" alt="Услуга за горами за лесами">
-        </figure>
-      </div>
+      if (!saved) return false;
 
-      <div class="offer__info">
-        <h3>УСЛУГА<em>ЗА ГОРАМИ</em><em>ЗА ЛЕСАМИ</em></h3>
-        <div class="specs">
-          <div><span>ЛОКАЦИЯ</span><b>ТАМ</b></div>
-          <div><span>КАК ДОБРАТЬСЯ</span><b>НИКАК</b></div>
-          <div><span>ПЛОЩАДЬ</span><b>18 м² УТРАМБОВАНО</b></div>
-          <div><span>WI-FI</span><b>ЕСТЬ*</b></div>
-          <div><span>ЗАСЕЛЕНИЕ</span><b>КОГДА ДОЙДЁШЬ</b></div>
-          <div><span>ВЫСЕЛЕНИЕ</span><b>ЕСЛИ ВЫЙДЕШЬ</b></div>
-          <div><span>ЗАВТРАК</span><b>СОБИРАЕШЬ САМ</b></div>
-          <div><span>ОХРАНА</span><b>МЕДВЕДЬ (ДРУЖЕЛЮБНЫЙ)</b></div>
-        </div>
-        <div class="price">
-          <s>7 900 ₽</s>
-          <b>4 900 ₽</b>
-          <small>* WI-FI ЕСТЬ, НО НЕ ЗДЕСЬ · ПРЕДОПЛАТА 100%</small>
-          <button class="buy" id="buyBtn">КУПИТЬ УСЛУГУ</button>
-        </div>
-      </div>
-    </div>
-  </article>
-</section>
+      const first = positionedRect(cards[0], positions.foto1, edge, footerTop);
+      const second = positionedRect(cards[1], positions.foto2, edge, footerTop);
+      return !rectanglesOverlap(first, second);
+    }
 
-<!-- ТАРИФЫ -->
-<section id="tarify">
-  <div class="sec__head">
-    <span class="sec__num">[ 02 ]</span>
-    <h2>ТАРИФНАЯ <em>СЕТКА</em></h2>
-    <div class="rule"></div>
-  </div>
-  <div class="plans">
-    <div class="plan">
-      <h4>БАЗА</h4>
-      <div class="p">1 900 ₽</div>
-      <ul>
-        <li>Ты знаешь, что услуга существует</li>
-        <li>Моральная поддержка</li>
-        <li>Направление рукой</li>
-        <li>Без карты</li>
-      </ul>
-      <button class="btn btn--ghost buy-alt">ВЗЯТЬ</button>
-    </div>
-    <div class="plan plan--hot">
-      <h4>ЗА ГОРАМИ ★</h4>
-      <div class="p">4 900 ₽</div>
-      <ul>
-        <li>Полный доступ к поляне</li>
-        <li>Координаты с точностью ±40 км</li>
-        <li>Личная встреча с Толей (по видео)</li>
-        <li>Плейлист из 90 песен в дорогу</li>
-      </ul>
-      <button class="btn btn--red buy-alt">КУПИТЬ</button>
-    </div>
-    <div class="plan">
-      <h4>ЗА ЛЕСАМИ</h4>
-      <div class="p">9 900 ₽</div>
-      <ul>
-        <li>Всё из тарифа выше</li>
-        <li>Тебя провожают</li>
-        <li>Обратно — как получится</li>
-        <li>Именная табличка на дереве</li>
-      </ul>
-      <button class="btn btn--ghost buy-alt">ОФОРМИТЬ</button>
-    </div>
-  </div>
-</section>
+    function tryNextImageFormat(image) {
+      const fallbacks = (image.dataset.fallbacks || '').split('|').filter(Boolean);
+      const index = Number(image.dataset.fallbackIndex || '0');
 
-<!-- ОТЗЫВЫ -->
-<section id="otzyvy">
-  <div class="sec__head">
-    <span class="sec__num">[ 03 ]</span>
-    <h2>ОТЗЫВЫ <em>ВЫЖИВШИХ</em></h2>
-    <div class="rule"></div>
-    <span class="sec__num">4.9 / 5 · 3 ОТЗЫВА</span>
-  </div>
-  <div class="revs">
-    <div class="rev">
-      <div class="stars">★★★★★</div>
-      <p>Шёл три дня. На четвёртый понял, что услуга шла со мной с самого начала. Спасибо, Толя. Ставлю пять.</p>
-      <footer>— АНОНИМ, ВЕРНУЛСЯ</footer>
-    </div>
-    <div class="rev">
-      <div class="stars">★★★★★</div>
-      <p>Заплатил, приехал, там поляна. Просто поляна. Идеально. Ни одного лишнего элемента. Минимализм года.</p>
-      <footer>— ДИЗАЙНЕР, 34 ГОДА</footer>
-    </div>
-    <div class="rev">
-      <div class="stars">★★★★☆</div>
-      <p>Wi-Fi действительно есть, как и написано. Правда, в соседней области. За честность — минус одна звезда, за наглость — плюс уважение.</p>
-      <footer>— ОТЗЫВ ОТПРАВЛЕН ГОЛУБЕМ</footer>
-    </div>
-  </div>
-</section>
+      if (index < fallbacks.length) {
+        image.dataset.fallbackIndex = String(index + 1);
+        image.src = fallbacks[index];
+        return;
+      }
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="sec__head">
-    <span class="sec__num">[ 04 ]</span>
-    <h2>ЧАСТЫЕ <em>ВОПРОСЫ</em></h2>
-    <div class="rule"></div>
-  </div>
-  <div class="faq">
-    <div class="q"><div class="q__t">ГДЕ ИМЕННО НАХОДИТСЯ УСЛУГА? <i>+</i></div>
-      <div class="q__a"><p>За горами. За лесами. Более точные координаты выдаются после оплаты, устно, шёпотом, один раз. Записывать запрещено.</p></div></div>
-    <div class="q"><div class="q__t">МОЖНО ЛИ ВЕРНУТЬ ДЕНЬГИ? <i>+</i></div>
-      <div class="q__a"><p>Технически — да. Практически — форма возврата находится на той же поляне. Чтобы её заполнить, нужно снова дойти. Логика замкнута, юристы в восторге.</p></div></div>
-    <div class="q"><div class="q__t">ЧТО ВХОДИТ В СТОИМОСТЬ? <i>+</i></div>
-      <div class="q__a"><p>Воздух (свежий), тишина (плотная), земля (утрамбованная), деревья (много). Всё в состоянии «как есть». Мебель не предусмотрена концепцией.</p></div></div>
-    <div class="q"><div class="q__t">ЭТО ВООБЩЕ ЛЕГАЛЬНО? <i>+</i></div>
-      <div class="q__a"><p>Услуга существует. Оплата проходит. Поляна на месте. Все три факта проверяемы. Остальное — вопросы философии.</p></div></div>
-    <div class="q"><div class="q__t">ПОЧЕМУ ТАК ДОРОГО? <i>+</i></div>
-      <div class="q__a"><p>Потому что дёшево — это когда рядом. А у нас за горами и за лесами. Логистика смысла стоит денег.</p></div></div>
-  </div>
-</section>
+      placeCards();
+    }
 
-<!-- ФУТЕР -->
-<footer class="big">
-  <div class="foot">
-    <div class="foot__big">TOLY<br>SUMMER</div>
-    <div class="foot__col"><b>КОНТАКТЫ</b>
-      Телефон: не берём<br>
-      Почта: не читаем<br>
-      Адрес: за горами, 1<br>
-      Приём: по вторникам, если дойдёте
-    </div>
-    <div class="foot__col"><b>РАЗДЕЛЫ</b>
-      Услуга (одна)<br>
-      Тарифы (три)<br>
-      Отзывы (правдивые)<br>
-      Возврат (недоступен)
-    </div>
-  </div>
-  <div class="copy">
-    <span>© 2026 TOLY SUMMER® · ВСЕ ПРАВА ЗАБРАНЫ</span>
-    <span id="visitors">ОНЛАЙН НА САЙТЕ: 1</span>
-  </div>
-</footer>
+    function createPositions(edge, footerTop) {
+      const positions = {};
+      const occupied = [];
 
-<!-- МОДАЛКА -->
-<div class="modal" id="modal">
-  <div class="modal__bg" data-close></div>
-  <div class="modal__box" id="modalBox">
-    <h3 id="mTitle">ТЫ СЕРЬЁЗНО?</h3>
-    <p id="mText">Ты правда собрался покупать услугу за горами за лесами.<br>Подумай ещё раз. Мы подождём.</p>
-    <div class="row">
-      <button id="mYes">ДА, СЕРЬЁЗНО</button>
-      <button class="alt" data-close>НЕТ, ПОКАЗАЛОСЬ</button>
-    </div>
-  </div>
-</div>
+      cards.forEach((card) => {
+        const anchors = [
+          { x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 },
+          { x: 0.5, y: 0 }, { x: 0.5, y: 1 }, { x: 0, y: 0.5 }, { x: 1, y: 0.5 }
+        ];
+        let position = { x: Math.random(), y: Math.random() };
+        let candidate = positionedRect(card, position, edge, footerTop);
+        let found = occupied.every((other) => !rectanglesOverlap(candidate, other));
 
-<!-- ЛАЙТБОКС -->
-<div class="lb" id="lb">
-  <span class="lb__x" data-lbclose>✕</span>
-  <img id="lbImg" src="" alt="">
-</div>
+        for (let attempt = 0; !found && attempt < 160; attempt += 1) {
+          position = { x: Math.random(), y: Math.random() };
+          candidate = positionedRect(card, position, edge, footerTop);
+          found = occupied.every((other) => !rectanglesOverlap(candidate, other));
+        }
 
-<script>
-/* ---- бегущие строки ---- */
-const tickWords = ['УСЛУГА ЗА ГОРАМИ ЗА ЛЕСАМИ','ОСТАЛОСЬ 2 МЕСТА','ПРЕДОПЛАТА 100%','ВОЗВРАТА НЕТ','90 АВТОРСКИХ ПЕСЕН','ДОРОГА ЗАЙМЁТ 3 ДНЯ','WI-FI ЕСТЬ*'];
-document.getElementById('tick').innerHTML =
-  (tickWords.map(w=>'<span>'+w+' ///</span>').join('')).repeat(2);
+        for (const anchor of anchors) {
+          if (found) break;
+          const anchoredCandidate = positionedRect(card, anchor, edge, footerTop);
+          if (occupied.every((other) => !rectanglesOverlap(anchoredCandidate, other))) {
+            position = anchor;
+            candidate = anchoredCandidate;
+            found = true;
+          }
+        }
 
-const marqWords = ['ЗА ГОРАМИ','<i>★</i>','ЗА ЛЕСАМИ','<i>★</i>','БЕЗ ВОЗВРАТА','<i>★</i>'];
-document.getElementById('marq').innerHTML =
-  (marqWords.map(w=>'<span>'+w+'</span>').join('')).repeat(4);
+        positions[card.dataset.positionKey] = position;
+        occupied.push(candidate);
+      });
 
-/* ---- счётчики ---- */
-const seen = new WeakSet();
-const io = new IntersectionObserver(es=>es.forEach(e=>{
-  if(!e.isIntersecting || seen.has(e.target)) return;
-  seen.add(e.target);
-  const end = +e.target.dataset.c; let cur = 0;
-  const step = Math.max(1, Math.round(end/45));
-  const t = setInterval(()=>{
-    cur += step;
-    if(cur >= end){ cur = end; clearInterval(t); }
-    e.target.textContent = cur;
-  }, 24);
-}),{threshold:.5});
-document.querySelectorAll('.stat b').forEach(b=>io.observe(b));
+      savePositions(positions);
+      return positions;
+    }
 
-/* ---- таймер акции ---- */
-const clock = document.getElementById('clock');
-setInterval(()=>{
-  const d = new Date(), left = 86400 - (d.getHours()*3600 + d.getMinutes()*60 + d.getSeconds());
-  const p = n => String(n).padStart(2,'0');
-  clock.textContent = 'ДО КОНЦА АКЦИИ: ' + p(left/3600|0) + ':' + p(left/60%60|0) + ':' + p(left%60);
-},1000);
+    function placeCards() {
+      if (!images.every((image) => image.complete)) return;
 
-/* ---- фейковый онлайн ---- */
-const vis = document.getElementById('visitors');
-setInterval(()=>{ vis.textContent = 'ОНЛАЙН НА САЙТЕ: ' + (1 + Math.floor(Math.random()*4)); }, 4000);
+      const edge = window.innerWidth < 640 ? 12 : 24;
+      const footerTop = footer.getBoundingClientRect().top;
+      let positions = readPositions();
 
-/* ---- FAQ ---- */
-document.querySelectorAll('.q').forEach(q=>{
-  q.addEventListener('click',()=>{
-    const was = q.classList.contains('open');
-    document.querySelectorAll('.q').forEach(o=>o.classList.remove('open'));
-    if(!was) q.classList.add('open');
-  });
-});
+      if (!positionsAreUsable(positions, edge, footerTop)) {
+        positions = createPositions(edge, footerTop);
+      }
 
-/* ---- лайтбокс ---- */
-const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg');
-document.querySelectorAll('.gal figure').forEach(f=>{
-  f.addEventListener('click',()=>{
-    lbImg.src = f.querySelector('img').src;
-    lb.classList.add('on');
-  });
-});
-lb.addEventListener('click', e=>{ if(e.target === lb || e.target.hasAttribute('data-lbclose')) lb.classList.remove('on'); });
+      cards.forEach((card) => {
+        const position = positions[card.dataset.positionKey];
+        const rect = positionedRect(card, position, edge, footerTop);
 
-/* ---- модалка «ты серьёзно?» ---- */
-const modal = document.getElementById('modal'), box = document.getElementById('modalBox');
-const mTitle = document.getElementById('mTitle'), mText = document.getElementById('mText'), mYes = document.getElementById('mYes');
+        card.style.transform = `translate3d(${Math.round(rect.x)}px, ${Math.round(rect.y)}px, 0)`;
+        card.classList.add('ready');
+      });
+    }
 
-const stages = [
-  {t:'ТЫ СЕРЬЁЗНО?', x:'Ты правда собрался покупать услугу за горами за лесами.<br>Подумай ещё раз. Мы подождём.', y:'ДА, СЕРЬЁЗНО'},
-  {t:'ПРЯМ СЕРЬЁЗНО?', x:'Там нет дороги. Там нет розетки.<br>Там есть поляна и всё.', y:'МНЕ ПОДХОДИТ'},
-  {t:'НУ ТЫ ДАЁШЬ', x:'Ладно. Уважаем. Но сначала — три дня пешком.<br>Готов?', y:'ГОТОВ'},
-  {t:'ЗАЯВКА ПРИНЯТА', x:'Толя уже вышел встречать. Он будет там через 3 дня.<br>Или не будет. Координаты вышлем шёпотом.', y:'ЗАКРЫТЬ'}
-];
-let stage = 0;
+    images.forEach((image) => {
+      image.addEventListener('load', placeCards);
+      image.addEventListener('error', () => tryNextImageFormat(image));
+    });
 
-function openModal(){
-  stage = 0; render();
-  modal.classList.add('on');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal(){
-  modal.classList.remove('on');
-  document.body.style.overflow = '';
-}
-function render(){
-  const s = stages[stage];
-  mTitle.textContent = s.t; mText.innerHTML = s.x; mYes.textContent = s.y;
-  const no = document.querySelector('.modal__box button.alt');
-  no.style.transform = 'none';
-  no.style.visibility = (stage === stages.length - 1) ? 'hidden' : 'visible';
-  box.classList.remove('shake'); void box.offsetWidth; box.classList.add('shake');
-}
-document.getElementById('buyBtn').addEventListener('click', openModal);
-document.querySelectorAll('.buy-alt').forEach(b=>b.addEventListener('click', openModal));
-
-mYes.addEventListener('click',()=>{
-  if(stage < stages.length - 1){ stage++; render(); }
-  else closeModal();
-});
-modal.addEventListener('click', e=>{ if(e.target.hasAttribute('data-close')) closeModal(); });
-document.addEventListener('keydown', e=>{
-  if(e.key === 'Escape'){ closeModal(); lb.classList.remove('on'); }
-});
-
-/* ---- убегающая кнопка «НЕТ, ПОКАЗАЛОСЬ» на 2-й стадии ---- */
-const noBtn = document.querySelector('.modal__box button.alt');
-const canHover = window.matchMedia('(hover:hover)').matches;
-noBtn.addEventListener('mouseenter',()=>{
-  if(canHover && (stage === 1 || stage === 2)){
-    noBtn.style.transform = 'translate(' + (Math.random()*140-70|0) + 'px,' + (Math.random()*70-35|0) + 'px)';
-    noBtn.style.transition = 'transform .12s';
-  }
-});
-modal.addEventListener('transitionend',()=>{});
-</script>
+    window.addEventListener('load', placeCards);
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(placeCards, 100);
+    });
+  </script>
 </body>
 </html>
