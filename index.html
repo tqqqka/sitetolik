@@ -39,7 +39,7 @@
       flex-direction: column;
       align-items: center;
       gap: 7px;
-      width: min(32vw, 320px);
+      width: min(28vw, 300px);
       opacity: 0;
       will-change: transform;
     }
@@ -87,14 +87,14 @@
     }
 
     @media (max-width: 640px) {
-      .photo-card { width: min(43vw, 210px); }
-      .photo-card img { max-height: 40svh; }
+      .photo-card { width: min(40vw, 190px); }
+      .photo-card img { max-height: 35svh; }
     }
   </style>
 </head>
 <body>
   <main class="screen">
-    <!-- Поддерживаются foto1/foto2 в форматах JPG, JPEG и PNG. -->
+    <!-- Поддерживаются foto1/foto2/foto3 в форматах JPG, JPEG и PNG. -->
     <article class="photo-card" data-position-key="foto1">
       <img src="foto1.jpg" data-fallbacks="foto1.jpeg|foto1.png|foto1.JPG|foto1.JPEG|foto1.PNG" alt="Фото от @fyave">
       <a class="nickname" href="https://t.me/fyave" target="_blank" rel="noopener noreferrer">@fyave</a>
@@ -103,6 +103,11 @@
     <article class="photo-card" data-position-key="foto2">
       <img src="foto2.jpg" data-fallbacks="foto2.jpeg|foto2.png|foto2.JPG|foto2.JPEG|foto2.PNG" alt="Фото от анонимного автора">
       <span class="nickname">Аноним</span>
+    </article>
+
+    <article class="photo-card" data-position-key="foto3">
+      <img src="foto3.jpg" data-fallbacks="foto3.jpeg|foto3.png|foto3.JPG|foto3.JPEG|foto3.PNG|01-15855.jpg" alt="Фото от @MSazonenko">
+      <a class="nickname" href="https://t.me/MSazonenko" target="_blank" rel="noopener noreferrer">@MSazonenko</a>
     </article>
 
     <footer class="advertising-footer" id="advertising-footer">
@@ -161,9 +166,13 @@
 
       if (!saved) return false;
 
-      const first = positionedRect(cards[0], positions.foto1, edge, footerTop);
-      const second = positionedRect(cards[1], positions.foto2, edge, footerTop);
-      return !rectanglesOverlap(first, second);
+      const rectangles = cards.map((card) =>
+        positionedRect(card, positions[card.dataset.positionKey], edge, footerTop)
+      );
+
+      return rectangles.every((rectangle, index) =>
+        rectangles.slice(index + 1).every((other) => !rectanglesOverlap(rectangle, other))
+      );
     }
 
     function tryNextImageFormat(image) {
