@@ -1,260 +1,524 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#000000">
-  <title>Фото</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080808">
+  <title>tolysummer.ru — домен продаётся</title>
+  <meta name="description" content="Домен tolysummer.ru продаётся. Покупка через REG.RU. Контакт: @tq2ka в Telegram.">
+
   <style>
-    * { box-sizing: border-box; }
-
-    html, body {
-      width: 100%;
-      min-height: 100%;
-      margin: 0;
-      overflow: hidden;
-      background: #000;
+    :root{
+      --bg:#070707;
+      --panel:#101012;
+      --panel2:#0b0b0d;
+      --text:#f4f4f2;
+      --muted:#96969b;
+      --line:rgba(255,255,255,.10);
+      --accent:#ff633d;
+      --accent2:#ff9f43;
+      --topbar-h:86px;
+      --bottombar-h:86px;
     }
 
-    body {
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 50% -10%,rgba(255,99,61,.14),transparent 30%),
+        #070707;
+      min-height:100vh;
+      overflow-x:hidden;
     }
 
-    .screen {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      height: 100svh;
-      overflow: hidden;
-      background: #000;
+    a{color:inherit}
+
+    .adbar{
+      position:fixed;
+      left:0;
+      right:0;
+      z-index:1000;
+      min-height:var(--topbar-h);
+      background:rgba(9,9,10,.96);
+      backdrop-filter:blur(14px);
+      border-color:var(--line);
+      border-style:solid;
+      display:flex;
+      align-items:center;
     }
 
-    .photo-card {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 7px;
-      width: min(28vw, 300px);
-      opacity: 0;
-      will-change: transform;
+    .adbar.top{top:0;border-width:0 0 1px}
+    .adbar.bottom{bottom:0;border-width:1px 0 0}
+
+    .adbar-inner{
+      width:min(1180px,calc(100% - 28px));
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      align-items:center;
+      gap:18px;
     }
 
-    .photo-card.ready { opacity: 1; }
-
-    .photo-card img {
-      display: block;
-      width: 100%;
-      max-height: 46svh;
-      object-fit: contain;
-      object-position: center;
+    .ad-kicker{
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:#727278;
+      font-weight:900;
+      white-space:nowrap;
     }
 
-    .nickname {
-      color: #fff;
-      font-size: clamp(13px, 1.4vw, 16px);
-      line-height: 1.2;
-      text-decoration: none;
+    .ad-copy{
+      min-width:0;
     }
 
-    .advertising-footer {
-      position: absolute;
-      right: 12px;
-      bottom: max(12px, env(safe-area-inset-bottom));
-      left: 12px;
-      color: #9a9a9a;
-      font-size: clamp(11px, 1.15vw, 13px);
-      line-height: 1.35;
-      text-align: center;
+    .ad-copy strong{
+      display:block;
+      font-size:15px;
+      letter-spacing:-.02em;
+      margin-bottom:3px;
     }
 
-    .advertising-footer a {
-      color: #fff;
-      text-decoration: none;
+    .ad-copy span{
+      display:block;
+      color:#87878d;
+      font-size:12px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
-    .nickname:hover,
-    .nickname:focus-visible,
-    .advertising-footer a:hover,
-    .advertising-footer a:focus-visible {
-      color: #8fc7ff;
-      text-decoration: underline;
-      text-underline-offset: 3px;
+    .ad-actions{
+      display:flex;
+      gap:8px;
+      align-items:center;
     }
 
-    @media (max-width: 640px) {
-      .photo-card { width: min(40vw, 190px); }
-      .photo-card img { max-height: 35svh; }
+    .ad-btn,.ad-link{
+      min-height:40px;
+      padding:0 14px;
+      border-radius:11px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      font-size:12px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+
+    .ad-btn{
+      background:#fff;
+      color:#090909;
+    }
+
+    .ad-link{
+      border:1px solid var(--line);
+      color:#ccc;
+      background:rgba(255,255,255,.03);
+    }
+
+    .page{
+      min-height:100vh;
+      padding:
+        calc(var(--topbar-h) + 26px)
+        0
+        calc(var(--bottombar-h) + 26px);
+    }
+
+    .wrap{
+      width:min(1180px,calc(100% - 28px));
+      margin:0 auto;
+    }
+
+    .site-header{
+      height:64px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      border-bottom:1px solid var(--line);
+      margin-bottom:22px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:14px;
+      font-weight:900;
+      letter-spacing:.01em;
+    }
+
+    .brand-dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow:0 0 20px rgba(255,99,61,.35);
+    }
+
+    .header-link{
+      color:#aaa;
+      text-decoration:none;
+      font-size:12px;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:30px;
+      min-height:590px;
+      padding:54px;
+      background:
+        radial-gradient(circle at 86% 14%,rgba(255,99,61,.13),transparent 24%),
+        linear-gradient(145deg,#111113,#09090a 70%);
+      box-shadow:0 30px 80px rgba(0,0,0,.28);
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      right:-160px;
+      bottom:-210px;
+      border:1px solid rgba(255,255,255,.05);
+      box-shadow:
+        0 0 0 52px rgba(255,255,255,.015),
+        0 0 0 104px rgba(255,255,255,.01);
+      pointer-events:none;
+    }
+
+    .status{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 11px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.025);
+      color:#b5b5b9;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-weight:800;
+      position:relative;
+      z-index:2;
+    }
+
+    .status-dot{
+      width:7px;height:7px;border-radius:50%;
+      background:#6de38d;
+      box-shadow:0 0 12px rgba(109,227,141,.5);
+    }
+
+    h1{
+      margin:32px 0 0;
+      font-size:clamp(62px,8.5vw,122px);
+      line-height:.84;
+      letter-spacing:-.075em;
+      font-weight:950;
+      max-width:900px;
+      position:relative;
+      z-index:2;
+    }
+
+    .grad{
+      display:block;
+      background:linear-gradient(90deg,#fff,#d9d9d9 45%,#ff7d55 82%,#ffad53);
+      color:transparent;
+      -webkit-background-clip:text;
+      background-clip:text;
+    }
+
+    .lead{
+      max-width:720px;
+      margin:30px 0 0;
+      color:#b5b5ba;
+      font-size:18px;
+      line-height:1.6;
+      position:relative;
+      z-index:2;
+    }
+
+    .lead b{color:#fff}
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:30px;
+      position:relative;
+      z-index:3;
+    }
+
+    .btn{
+      min-height:56px;
+      padding:0 22px;
+      border-radius:14px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:900;
+      transition:.2s ease;
+    }
+
+    .btn-primary{
+      background:#fff;
+      color:#090909;
+      box-shadow:0 12px 28px rgba(255,255,255,.08);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 16px 36px rgba(255,255,255,.13);
+    }
+
+    .btn-secondary{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,.08);
+      transform:translateY(-2px);
+    }
+
+    .facts{
+      max-width:760px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      border-top:1px solid var(--line);
+      margin-top:46px;
+      position:relative;
+      z-index:2;
+    }
+
+    .fact{
+      padding:20px 22px 0 0;
+    }
+
+    .fact + .fact{
+      padding-left:22px;
+      border-left:1px solid var(--line);
+    }
+
+    .fact strong{
+      display:block;
+      font-size:13px;
+      margin-bottom:5px;
+      color:#fff;
+    }
+
+    .fact span{
+      font-size:12px;
+      line-height:1.4;
+      color:#75757b;
+    }
+
+    footer{
+      padding:20px 0 4px;
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      color:#64646a;
+      font-size:12px;
+    }
+
+    footer a{
+      color:#999;
+      text-decoration:none;
+    }
+
+    @media(max-width:720px){
+      :root{
+        --topbar-h:118px;
+        --bottombar-h:118px;
+      }
+
+      .adbar-inner{
+        grid-template-columns:1fr;
+        gap:8px;
+        padding:10px 0;
+      }
+
+      .ad-kicker{display:none}
+
+      .ad-copy strong{font-size:14px}
+      .ad-copy span{
+        white-space:normal;
+        overflow:visible;
+      }
+
+      .ad-actions{
+        display:block;
+      }
+
+      .ad-btn,.ad-link{
+        min-height:38px;
+        padding:0 10px;
+      }
+
+      .ad-btn{
+        width:100%;
+      }
+
+      .site-header{
+        height:56px;
+      }
+
+      .hero{
+        padding:32px 20px 28px;
+        min-height:auto;
+        border-radius:22px;
+      }
+
+      h1{
+        font-size:clamp(52px,18vw,82px);
+        margin-top:26px;
+      }
+
+      .lead{
+        font-size:16px;
+        margin-top:24px;
+      }
+
+      .actions{
+        display:grid;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .facts{
+        grid-template-columns:1fr;
+        margin-top:34px;
+      }
+
+      .fact{
+        padding:15px 0;
+      }
+
+      .fact + .fact{
+        padding-left:0;
+        border-left:0;
+        border-top:1px solid var(--line);
+      }
+
+      footer{
+        flex-direction:column;
+        align-items:flex-start;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="screen">
-    <!-- Поддерживаются foto1/foto2/foto3 в форматах JPG, JPEG и PNG. -->
-    <article class="photo-card" data-position-key="foto1">
-      <img src="foto1.jpg" data-fallbacks="foto1.jpeg|foto1.png|foto1.JPG|foto1.JPEG|foto1.PNG" alt="Фото от @fyave">
-      <a class="nickname" href="https://t.me/fyave" target="_blank" rel="noopener noreferrer">@fyave</a>
-    </article>
 
-    <article class="photo-card" data-position-key="foto2">
-      <img src="foto2.jpg" data-fallbacks="foto2.jpeg|foto2.png|foto2.JPG|foto2.JPEG|foto2.PNG" alt="Фото от анонимного автора">
-      <span class="nickname">Аноним</span>
-    </article>
+  <div class="adbar top">
+    <div class="adbar-inner">
+      <div class="ad-kicker">Реклама</div>
+      <div class="ad-copy">
+        <strong>Ваш баннер здесь</strong>
+        <span>Размещение рекламы на странице TolySummer</span>
+      </div>
+      <div class="ad-actions">
+        <a class="ad-btn" href="https://t.me/tq2ka" target="_blank" rel="noopener noreferrer">Купить место</a>
+      </div>
+    </div>
+  </div>
 
-    <article class="photo-card" data-position-key="foto3">
-      <img src="foto3.jpg" data-fallbacks="foto3.jpeg|foto3.png|foto3.JPG|foto3.JPEG|foto3.PNG|01-15855.jpg" alt="Фото от @MSazonenko">
-      <a class="nickname" href="https://t.me/MSazonenko" target="_blank" rel="noopener noreferrer">@MSazonenko</a>
-    </article>
+  <div class="page">
+    <div class="wrap">
+      <header class="site-header">
+        <div class="brand">
+          <span class="brand-dot"></span>
+          tolysummer.ru
+        </div>
+        <a class="header-link" href="https://t.me/tq2ka" target="_blank" rel="noopener noreferrer">Telegram · @tq2ka</a>
+      </header>
 
-    <footer class="advertising-footer" id="advertising-footer">
-      Поставить сюда своё фото, видео или рекламу:
-      <a href="https://t.me/tq2ka" target="_blank" rel="noopener noreferrer">@tq2ka</a>
-    </footer>
-  </main>
+      <main class="hero">
+        <div class="status">
+          <span class="status-dot"></span>
+          домен доступен для покупки
+        </div>
 
-  <script>
-    const STORAGE_KEY = 'photo-card-positions-v1';
-    const CARD_GAP = 18;
-    const cards = Array.from(document.querySelectorAll('.photo-card'));
-    const footer = document.getElementById('advertising-footer');
-    const images = cards.map((card) => card.querySelector('img'));
-    let resizeTimer;
+        <h1>
+          toly
+          <span class="grad">summer.ru</span>
+        </h1>
 
-    function readPositions() {
-      try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-      } catch {
-        return {};
-      }
-    }
+        <p class="lead">
+          <b>TolySummer</b> — известный исполнитель и узнаваемое имя.
+          Домен <b>tolysummer.ru</b> продаётся и подходит для официального сайта,
+          медиа-проекта или фан-сообщества.
+        </p>
 
-    function savePositions(positions) {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(positions));
-      } catch {
-        // Если хранилище браузера отключено, страница всё равно продолжит работать.
-      }
-    }
+        <div class="actions">
+          <a
+            class="btn btn-primary"
+            href="https://www.reg.ru/domain/shop/lot/tolysummer.ru"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Купить домен ↗
+          </a>
 
-    function rectanglesOverlap(first, second) {
-      return (
-        first.left < second.right + CARD_GAP &&
-        first.right + CARD_GAP > second.left &&
-        first.top < second.bottom + CARD_GAP &&
-        first.bottom + CARD_GAP > second.top
-      );
-    }
+          <a
+            class="btn btn-secondary"
+            href="https://t.me/tq2ka"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Контакты · @tq2ka
+          </a>
+        </div>
 
-    function positionedRect(card, position, edge, footerTop) {
-      const box = card.getBoundingClientRect();
-      const maxX = Math.max(edge, window.innerWidth - box.width - edge);
-      const maxY = Math.max(edge, footerTop - box.height - edge);
-      const x = edge + Math.min(1, Math.max(0, position.x)) * Math.max(0, maxX - edge);
-      const y = edge + Math.min(1, Math.max(0, position.y)) * Math.max(0, maxY - edge);
-      return { left: x, top: y, right: x + box.width, bottom: y + box.height, x, y };
-    }
+        <div class="facts">
+          <div class="fact">
+            <strong>tolysummer.ru</strong>
+            <span>короткий и узнаваемый домен</span>
+          </div>
+          <div class="fact">
+            <strong>REG.RU</strong>
+            <span>покупка через страницу лота</span>
+          </div>
+          <div class="fact">
+            <strong>@tq2ka</strong>
+            <span>контакт владельца в Telegram</span>
+          </div>
+        </div>
+      </main>
 
-    function positionsAreUsable(positions, edge, footerTop) {
-      const saved = cards.every((card) => {
-        const position = positions[card.dataset.positionKey];
-        return Number.isFinite(position?.x) && Number.isFinite(position?.y);
-      });
+      <footer>
+        <a href="https://www.reg.ru/domain/shop/lot/tolysummer.ru" target="_blank" rel="noopener noreferrer">Купить через REG.RU ↗</a>
+      </footer>
+    </div>
+  </div>
 
-      if (!saved) return false;
+  <div class="adbar bottom">
+    <div class="adbar-inner">
+      <div class="ad-kicker">Реклама</div>
+      <div class="ad-copy">
+        <strong>Хотите разместить рекламу?</strong>
+        <span>Баннер, интеграция или партнёрское размещение</span>
+      </div>
+      <div class="ad-actions">
+        <a class="ad-btn" href="https://t.me/tq2ka" target="_blank" rel="noopener noreferrer">Купить место</a>
+      </div>
+    </div>
+  </div>
 
-      const rectangles = cards.map((card) =>
-        positionedRect(card, positions[card.dataset.positionKey], edge, footerTop)
-      );
-
-      return rectangles.every((rectangle, index) =>
-        rectangles.slice(index + 1).every((other) => !rectanglesOverlap(rectangle, other))
-      );
-    }
-
-    function tryNextImageFormat(image) {
-      const fallbacks = (image.dataset.fallbacks || '').split('|').filter(Boolean);
-      const index = Number(image.dataset.fallbackIndex || '0');
-
-      if (index < fallbacks.length) {
-        image.dataset.fallbackIndex = String(index + 1);
-        image.src = fallbacks[index];
-        return;
-      }
-
-      placeCards();
-    }
-
-    function createPositions(edge, footerTop) {
-      const positions = {};
-      const occupied = [];
-
-      cards.forEach((card) => {
-        const anchors = [
-          { x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 },
-          { x: 0.5, y: 0 }, { x: 0.5, y: 1 }, { x: 0, y: 0.5 }, { x: 1, y: 0.5 }
-        ];
-        let position = { x: Math.random(), y: Math.random() };
-        let candidate = positionedRect(card, position, edge, footerTop);
-        let found = occupied.every((other) => !rectanglesOverlap(candidate, other));
-
-        for (let attempt = 0; !found && attempt < 160; attempt += 1) {
-          position = { x: Math.random(), y: Math.random() };
-          candidate = positionedRect(card, position, edge, footerTop);
-          found = occupied.every((other) => !rectanglesOverlap(candidate, other));
-        }
-
-        for (const anchor of anchors) {
-          if (found) break;
-          const anchoredCandidate = positionedRect(card, anchor, edge, footerTop);
-          if (occupied.every((other) => !rectanglesOverlap(anchoredCandidate, other))) {
-            position = anchor;
-            candidate = anchoredCandidate;
-            found = true;
-          }
-        }
-
-        positions[card.dataset.positionKey] = position;
-        occupied.push(candidate);
-      });
-
-      savePositions(positions);
-      return positions;
-    }
-
-    function placeCards() {
-      if (!images.every((image) => image.complete)) return;
-
-      const edge = window.innerWidth < 640 ? 12 : 24;
-      const footerTop = footer.getBoundingClientRect().top;
-      let positions = readPositions();
-
-      if (!positionsAreUsable(positions, edge, footerTop)) {
-        positions = createPositions(edge, footerTop);
-      }
-
-      cards.forEach((card) => {
-        const position = positions[card.dataset.positionKey];
-        const rect = positionedRect(card, position, edge, footerTop);
-
-        card.style.transform = `translate3d(${Math.round(rect.x)}px, ${Math.round(rect.y)}px, 0)`;
-        card.classList.add('ready');
-      });
-    }
-
-    images.forEach((image) => {
-      image.addEventListener('load', placeCards);
-      image.addEventListener('error', () => tryNextImageFormat(image));
-    });
-
-    window.addEventListener('load', placeCards);
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(placeCards, 100);
-    });
-  </script>
 </body>
 </html>
